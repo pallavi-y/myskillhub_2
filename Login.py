@@ -19,6 +19,7 @@ class Login:
         mycursor.execute("SELECT * FROM Users WHERE Fname = 'admin' AND Password = 'admin'")
         if mycursor.fetchone() is None:
             mycursor.execute("INSERT INTO Users (Fname, Password) VALUES('admin', 'admin')")
+        mycursor.close()
 
     def __init__(self, root):
 
@@ -62,8 +63,9 @@ class Login:
             print("Success",self.txt_passwd.get())
             #messagebox.showinfo("Welcome", "Successfully logged in", parent=self.root)
             self.command()
+            print("test")
+        mycursor.close()
 
-            self.success=1
     def command(self):
         self.newWindow=tk.Toplevel(self.root)
         obj = AfterLogin.AL(self.newWindow)

@@ -130,13 +130,13 @@ class Message1:
         if self.name == "Ravi":
             mycursor.execute("Select msg from message where reciever = 'Ravi';")
             result = mycursor.fetchall()
-            for i in result:
-                self.txt_msg_r.insert(1.0, i)
+            # for i in result:
+            #     self.txt_msg_r.insert(1.0, i)
         elif self.name == "Tarun":
             mycursor.execute("Select msg from message where reciever = 'Tarun';")
             result = mycursor.fetchall()
-            for i in result:
-                self.txt_msg_r.insert(1.0, i)
+            # for i in result:
+            #     self.txt_msg_r.insert(1.0, i)
         elif self.name == "Admin":
             mycursor.execute("Select msg from message where reciever = 'Admin';")
             self.txt_msg_r.insert(1.0, self.txt_msg.get(1.0, END))

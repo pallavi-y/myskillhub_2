@@ -4,7 +4,7 @@ from tkinter import messagebox
 
 import mysql.connector
 #
-db=mysql.connector.connect(host="localhost", user="rootuser", passwd="root", database="myskillhub")
+registerdb=mysql.connector.connect(host="localhost", user="rootuser", passwd="root", database="myskillhub")
 
 class Register:
 
@@ -70,7 +70,7 @@ class Register:
         btn_back = Button(frame1, command=(root.destroy), text="Back", fg="White", bg="Red").place(x=50, y=400)
 
     def feed_Info(self):
-        mycursor = db.cursor()
+        mycursor = registerdb.cursor()
         if self.txt_fname.get()=="" or self.txt_lname.get()=="" or self.txt_pass.get()=="" or self.txt_cpass.get()=="" or self.cmb_interest.get()=="":
             messagebox.showerror("Error", "All fields are required", parent=self.root)
         elif self.txt_pass.get()!=self.txt_cpass.get():
@@ -78,7 +78,9 @@ class Register:
         else:
             mycursor.execute("CREATE TABLE IF NOT EXISTS Users (Fname varchar(30),Lname varchar(30),Password varchar(30))")
             mycursor.execute("INSERT INTO Users ( Fname, Lname,Password) VALUES(%s,%s,%s)", (self.txt_fname.get(), self.txt_lname.get(),self.txt_pass.get()))
-
+        registerdb.commit()
+        mycursor.close()
+        print("closed")
 # root=Tk()
 # obj=Register(root)
 # root.mainloop()
