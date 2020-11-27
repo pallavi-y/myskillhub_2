@@ -4,7 +4,8 @@ from tkinter import *
 from tkinter import PhotoImage
 import mysql.connector
 import tkinter as tk
-
+import cv2
+import pytesseract
 try:
     import os
     import tkinter.ttk as ttk
@@ -34,7 +35,7 @@ db = mysql.connector.connect(host="localhost", user="rootuser", passwd="root", d
 # US.show()
 # root.mainloop()
 
-class TextToImage:
+class ImageTextReader:
     def __init__(self, root):
         self.root = root
 
@@ -49,14 +50,22 @@ class TextToImage:
 
         lbl_choose = Label(self.frame6, text="Type the path to your image:", bg="Red", fg="White", font=(12)).place(
             x=10, y=10)
-        img_path = Entry(self.frame6)
-        img_path.place(x=10, y=40, width=200, height=50)
+        self.img_path = Entry(self.frame6)
+        self.img_path.place(x=10, y=40, width=200, height=50)
 
-        txt_result = Text(self.frame6).place(x=500, y=40, height=500, width=300)
+        self.txt_result = Text(self.frame6)
+        self.txt_result.place(x=500, y=40, height=500, width=300)
 
-        btn_convert = Button(self.frame6, text="Convert", bg="Green", fg="white", font=15).place(x=10, y=200)
+        btn_convert = Button(self.frame6, text="Convert", bg="Green", fg="white", font=15,command=self.convert).place(x=10, y=200)
         btn_back = tk.Button(self.frame6, command=(self.frame6.destroy), text="Back", fg="White", bg="Red",
                              font=15).place(x=100, y=200)
+
+    def convert(self):
+        img=cv2.imread(self.img_path.get())
+        pytesseract.pytesseract.tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+        custom_config= r'--oem 3 --psm 6'
+        self.txt_result.insert(1.0,pytesseract.image_to_string(img,config=custom_config))
+
 
 
 class Message1:
@@ -261,7 +270,7 @@ class AL:
         M = Message1(self.root)
         btn = tk.Button(self.root, text="Click here", command=G.Summ).place(x=1000, y=280)
 
-        T = TextToImage(self.root)
+        T = ImageTextReader(self.root)
 
         # =====ICONS
         self.Icon1 = PhotoImage(file="Images/book.png")
