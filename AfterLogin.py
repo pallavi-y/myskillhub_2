@@ -6,6 +6,7 @@ import mysql.connector
 import tkinter as tk
 import cv2
 import pytesseract
+
 try:
     import os
     import tkinter.ttk as ttk
@@ -35,6 +36,38 @@ db = mysql.connector.connect(host="localhost", user="rootuser", passwd="root", d
 # US.show()
 # root.mainloop()
 
+
+class Audible:
+    def __init__(self, root):
+        self.root = root
+
+    def listen(self):
+        textTospeech.Say(self.txt_audio.get(1.0, END))
+
+    def setup(self):
+        self.frame6 = tk.Toplevel(self.root)
+        self.frame6.geometry("1000x600+850+50")
+
+        self.img_pic = PhotoImage(file="Images/bg7.png")
+        lnl = Label(self.frame6, image=self.img_pic).place(x=1, y=1, relheight=1, relwidth=1)
+        style = ttk.Style(self.frame6)
+        style.theme_use("clam")
+        self.txt_audio = tk.Text(self.frame6)
+        self.txt_audio.place(x=50, y=50, height=500, width=500)
+
+
+        self.lbl_info = Label(self.frame6, text="Welcome to your very own Audible!", bg="#52af52", fg="white",
+                              font=("Times new Roman", 20)).place(x=650, y=50)
+        self.lbl_info = Label(self.frame6, text="Listen to your favorite piece of article and do your work! ", bg="#52af52",
+                              fg="white", font=("Times new Roman", 15, "italic")).place(x=650, y=100)
+
+        self.lbl_info = Label(self.frame6, text="Enter your text here!", bg="#52af52", fg="white",
+                              font=("Times new Roman", 15)).place(x=50, y=30)
+        btn_listen = Button(self.frame6, text="Convert", bg="green", fg="white",command=self.listen).place(x=50, y=570)
+        btn_back = tk.Button(self.frame6, command=(self.frame6.destroy), text="Back", fg="White", bg="Red").place(x=600, y=570)
+
+
+
 class ImageTextReader:
     def __init__(self, root):
         self.root = root
@@ -56,23 +89,22 @@ class ImageTextReader:
         self.txt_result = Text(self.frame6)
         self.txt_result.place(x=500, y=40, height=500, width=300)
 
-        btn_convert = Button(self.frame6, text="Convert", bg="Green", fg="white", font=15,command=self.convert).place(x=10, y=200)
+        btn_convert = Button(self.frame6, text="Convert", bg="Green", fg="white", font=15, command=self.convert).place(
+            x=10, y=200)
         btn_back = tk.Button(self.frame6, command=(self.frame6.destroy), text="Back", fg="White", bg="Red",
                              font=15).place(x=100, y=200)
 
     def convert(self):
-        img=cv2.imread(self.img_path.get())
-        pytesseract.pytesseract.tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-        custom_config= r'--oem 3 --psm 6'
-        self.txt_result.insert(1.0,pytesseract.image_to_string(img,config=custom_config))
-
+        img = cv2.imread(self.img_path.get())
+        pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+        custom_config = r'--oem 3 --psm 6'
+        self.txt_result.insert(1.0, pytesseract.image_to_string(img, config=custom_config))
 
 
 class Message1:
     def __init__(self, root):
         self.root = root
         self.name = "none"
-
 
     def setup(self):
 
@@ -134,43 +166,19 @@ class Message1:
     def pr1(self):
 
         mycursor = db.cursor()
-        if self.txt_msg.get(1.0,END)==0:
+        if self.txt_msg.get(1.0, END) == 0:
             messagebox.showerror("Error", "Message box is empty", parent=self.root)
         else:
-            sendr="Admin"
-            mycursor.execute("Insert into message(sender,reciever,msg) values(%s,%s,%s)",(sendr,self.name,self.txt_msg.get(1.0,END)))
+            sendr = "Admin"
+            mycursor.execute("Insert into message(sender,reciever,msg) values(%s,%s,%s)",
+                             (sendr, self.name, self.txt_msg.get(1.0, END)))
 
             if self.name == "Admin":
-                #mycursor.execute("Select msg from message where reciever = 'Admin';")
+                # mycursor.execute("Select msg from message where reciever = 'Admin';")
                 self.txt_msg_r.insert(1.0, self.txt_msg.get(1.0, END))
             db.commit()
             mycursor.close()
 
-
-
-class Audible:
-    def __int__(self, root):
-        self.root = root
-
-    def listen(self):
-        text = self.txt_audio.get(1.0, END)
-        textTospeech.Say(text)
-
-    def begin(self):
-        frame3 = Toplevel(self.root, bg="#ba8181")
-        frame3.geometry("1000x600+850+50")
-        self.txt_audio = tk.Text(frame3)
-        self.txt_audio.place(x=50, y=50, height=500, width=500)
-
-        self.lbl_info = Label(frame3, text="Welcome to your very own Audible!", bg="#52af52", fg="white",
-                              font=("Times new Roman", 20)).place(x=650, y=50)
-        self.lbl_info = Label(frame3, text="Listen to your favorite piece of article and do your work! ", bg="#52af52",
-                              fg="white", font=("Times new Roman", 15, "italic")).place(x=650, y=100)
-
-        self.lbl_info = Label(frame3, text="Enter your text here!", bg="#52af52", fg="white",
-                              font=("Times new Roman", 15)).place(x=50, y=30)
-        self.btn_listen = Button(frame3, text="Convert", bg="green", fg="white", command=self.listen).place(x=50, y=570)
-        btn_back = tk.Button(frame3, command=(frame3.destroy), text="Back", fg="White", bg="Red").place(x=600, y=570)
 
 class GetSummary:
     def __init__(self, root):
@@ -197,6 +205,30 @@ class GetSummary:
         self.btn_sum = tk.Button(frame2, text="Get Summary", bg="green", fg="white", command=self.d).place(x=150, y=550)
 
         btn_back = tk.Button(frame2, command=(frame2.destroy), text="Back", fg="White", bg="Red").place(x=600, y=500)
+
+
+class Audible1:
+    def __int__(self, root):
+        self.root = root
+
+    def listen(self):
+        textTospeech.Say(self.txt_audio.get(1.0, END))
+
+    def begin(self):
+        frame3 = tk.Toplevel(self.root, bg="#ba8181")
+        frame3.geometry("1000x600+850+50")
+        self.txt_audio = tk.Text(frame3)
+        self.txt_audio.place(x=50, y=50, height=500, width=500)
+
+        self.lbl_info = Label(frame3, text="Welcome to your very own Audible!", bg="#52af52", fg="white",
+                              font=("Times new Roman", 20)).place(x=650, y=50)
+        self.lbl_info = Label(frame3, text="Listen to your favorite piece of article and do your work! ", bg="#52af52",
+                              fg="white", font=("Times new Roman", 15, "italic")).place(x=650, y=100)
+
+        self.lbl_info = Label(frame3, text="Enter your text here!", bg="#52af52", fg="white",
+                              font=("Times new Roman", 15)).place(x=50, y=30)
+        btn_listen = Button(frame3, text="Convert", bg="green", fg="white", command=self.listen).place(x=50, y=570)
+        btn_back = tk.Button(frame3, command=(frame3.destroy), text="Back", fg="White", bg="Red").place(x=600, y=570)
 
 
 class AL:
@@ -262,7 +294,8 @@ class AL:
         self.closeBtn = tk.Button(self.navRoot, image=self.closeIcon, bg=self.color["orange"],
                                   activebackground=self.color["orange"], bd=0, command=self.switch)
         self.closeBtn.place(x=200, y=5, height=50, width=100)
-        A = Audible
+
+        A = Audible(self.root)
         G = GetSummary(self.root)
         M = Message1(self.root)
         btn = tk.Button(self.root, text="Click here", command=G.Summ).place(x=1000, y=280)
@@ -279,7 +312,7 @@ class AL:
         lbl3 = Label(self.root, image=self.Icon3).place(x=1000, y=400, height=180, width=180)
         lbl4 = Label(self.root, image=self.Icon4).place(x=1300, y=400, height=180, width=180)
 
-        btn2 = tk.Button(self.root, text="Click here For Audio", command=A.begin).place(x=1300, y=280)
+        btn2 = tk.Button(self.root, text="Click here For Audio", command=A.setup).place(x=1300, y=280)
         btn3 = tk.Button(self.root, text="Click here For Message", command=M.setup).place(x=1000, y=600)
         btn4 = tk.Button(self.root, text="Click here For Image to Text", command=T.setup).place(x=1300, y=600)
 
@@ -314,7 +347,6 @@ class AL:
 
             # turing button ON:
             self.btnState = True
-
 
 # root = Tk()
 # obj = AL(root)

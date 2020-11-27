@@ -75,11 +75,10 @@ class Login:
 
     def command(self):
         self.newWindow=tk.Toplevel(self.root)
-        obj = AfterLogin.AL(self.newWindow)
-        self.app=obj
+        self.app= AfterLogin.AL(self.newWindow)
     def loadRegister(self):
         self.newWindow1 = tk.Toplevel(self.root)
-        self.newWindow1 = RegisterPage.Register(self.newWindow1)
+        self.app1 = RegisterPage.Register(self.newWindow1)
 
 # root=Tk()
 # obj=Login(root)
