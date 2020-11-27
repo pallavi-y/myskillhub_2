@@ -1,7 +1,7 @@
 import textTospeech
 import summarizer
 from tkinter import *
-from tkinter import PhotoImage
+from tkinter import PhotoImage, messagebox
 import mysql.connector
 import tkinter as tk
 import cv2
@@ -73,8 +73,6 @@ class Message1:
         self.root = root
         self.name = "none"
 
-    def Database(self):
-        mycursor = db.cursor()
 
     def setup(self):
 
@@ -114,7 +112,7 @@ class Message1:
 
     def pr(self):
         self.lbl_name['text'] = 'Message to: Tarun Kumar'
-        self.Database()
+
         mycursor = db.cursor()
         mycursor.execute("Select * from users")
         result = mycursor.fetchall()
@@ -134,21 +132,20 @@ class Message1:
         self.lbl_name['text'] = 'Message to: ' + self.name
 
     def pr1(self):
-        self.Database()
+
         mycursor = db.cursor()
-        if self.name == "Ravi":
-            mycursor.execute("Select msg from message where reciever = 'Ravi';")
-            result = mycursor.fetchall()
-            # for i in result:
-            #     self.txt_msg_r.insert(1.0, i)
-        elif self.name == "Tarun":
-            mycursor.execute("Select msg from message where reciever = 'Tarun';")
-            result = mycursor.fetchall()
-            # for i in result:
-            #     self.txt_msg_r.insert(1.0, i)
-        elif self.name == "Admin":
-            mycursor.execute("Select msg from message where reciever = 'Admin';")
-            self.txt_msg_r.insert(1.0, self.txt_msg.get(1.0, END))
+        if self.txt_msg.get(1.0,END)==0:
+            messagebox.showerror("Error", "Message box is empty", parent=self.root)
+        else:
+            sendr="Admin"
+            mycursor.execute("Insert into message(sender,reciever,msg) values(%s,%s,%s)",(sendr,self.name,self.txt_msg.get(1.0,END)))
+
+            if self.name == "Admin":
+                #mycursor.execute("Select msg from message where reciever = 'Admin';")
+                self.txt_msg_r.insert(1.0, self.txt_msg.get(1.0, END))
+            db.commit()
+            mycursor.close()
+
 
 
 class Audible:

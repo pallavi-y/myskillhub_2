@@ -1,5 +1,7 @@
 from tkinter import *
 import tkinter as tk
+from tkinter import messagebox
+
 import AfterLogin
 
 import mysql.connector
@@ -56,15 +58,20 @@ class Login:
         self.Database()
         mycursor = db.cursor()
         password=self.txt_passwd.get()
+        if self.txt_user.get()=="" or self.txt_passwd == "":
+            messagebox.showerror("Error", "Both the fields are mandatory", parent=self.root)
+        else:
+            mycursor.execute("SELECT * FROM users WHERE Fname = %s  AND Password = %s",
+                             (self.txt_user.get(), self.txt_passwd.get()))
+            if mycursor.fetchone() is not None:
+                print("Success",self.txt_passwd.get())
+                #messagebox.showinfo("Welcome", "Successfully logged in", parent=self.root)
+                self.command()
+                print("test")
+            else:
+                messagebox.showerror("Error", "Incorrect username or password", parent=self.root)
 
-        mycursor.execute("SELECT * FROM users WHERE Fname = %s  AND Password = %s",
-                         (self.txt_user.get(), self.txt_passwd.get()))
-        if mycursor.fetchone() is not None:
-            print("Success",self.txt_passwd.get())
-            #messagebox.showinfo("Welcome", "Successfully logged in", parent=self.root)
-            self.command()
-            print("test")
-        mycursor.close()
+            mycursor.close()
 
     def command(self):
         self.newWindow=tk.Toplevel(self.root)
