@@ -47,7 +47,7 @@ class Audible:
     def setup(self):
         self.frame6 = tk.Toplevel(self.root)
         self.frame6.geometry("1000x600+850+50")
-
+        self.frame6.state('zoomed')
         self.img_pic = PhotoImage(file="Images/bg7.png")
         lnl = Label(self.frame6, image=self.img_pic).place(x=1, y=1, relheight=1, relwidth=1)
         style = ttk.Style(self.frame6)
@@ -63,8 +63,8 @@ class Audible:
 
         self.lbl_info = Label(self.frame6, text="Enter your text here!", bg="#52af52", fg="white",
                               font=("Times new Roman", 15)).place(x=50, y=30)
-        btn_listen = Button(self.frame6, text="Convert", bg="green", fg="white",command=self.listen).place(x=50, y=570)
-        btn_back = tk.Button(self.frame6, command=(self.frame6.destroy), text="Back", fg="White", bg="Red").place(x=600, y=570)
+        btn_listen = Button(self.frame6, text="Convert", bg="#3CB371", fg="white",font=15,command=self.listen).place(x=50, y=570)
+        btn_back = tk.Button(self.frame6, command=(self.frame6.destroy), text="Back", bg="#DC143C",fg="white",font=15).place(x=600, y=570)
 
 
 
@@ -75,7 +75,7 @@ class ImageTextReader:
     def setup(self):
         self.frame6 = tk.Toplevel(self.root)
         self.frame6.geometry("1000x600+850+50")
-
+        self.frame6.state('zoomed')
         self.img_pic = PhotoImage(file="Images/bg7.png")
         lnl = Label(self.frame6, image=self.img_pic).place(x=1, y=1, relheight=1, relwidth=1)
         style = ttk.Style(self.frame6)
@@ -84,15 +84,15 @@ class ImageTextReader:
         lbl_choose = Label(self.frame6, text="Type the path to your image:", bg="Red", fg="White", font=(12)).place(
             x=10, y=10)
         self.img_path = Entry(self.frame6)
-        self.img_path.place(x=10, y=40, width=200, height=50)
-
+        self.img_path.place(x=10, y=70, width=200, height=50)
+        lbl_result = Label(self.frame6, text="Your result text:", bg="Red", fg="White", font=(12)).place(
+            x=500, y=10)
         self.txt_result = Text(self.frame6)
-        self.txt_result.place(x=500, y=40, height=500, width=300)
+        self.txt_result.place(x=500, y=40, height=700, width=500)
 
-        btn_convert = Button(self.frame6, text="Convert", bg="Green", fg="white", font=15, command=self.convert).place(
+        btn_convert = Button(self.frame6, text="Convert", bg="#3CB371", fg="white",font=15, command=self.convert).place(
             x=10, y=200)
-        btn_back = tk.Button(self.frame6, command=(self.frame6.destroy), text="Back", fg="White", bg="Red",
-                             font=15).place(x=100, y=200)
+        btn_back = tk.Button(self.frame6, command=(self.frame6.destroy), text="Back", bg="#DC143C",fg="white",font=15).place(x=100, y=200)
 
     def convert(self):
         img = cv2.imread(self.img_path.get())
@@ -117,29 +117,30 @@ class Message1:
         l_1 = Label(self.frame4, image=self.Bg1).place(x=1, y=1, relheight=1, relwidth=1)
 
         self.p1 = PhotoImage(file="Images/Avtar1.png")
+        self.p2 = PhotoImage(file="Images/Avtar2.png")
+        self.p3 = PhotoImage(file="Images/Avtar3.png")
         frame5 = tk.Label(self.frame4, image=self.p1, bd=1).place(x=30, y=30, height=100, width=100)
 
         l_p1 = Button(self.frame4, text="Rajesh kumar\nWeb Devloper", command=self.change_label1, font=15).place(x=30,
                                                                                                                  y=140)
-        pic2 = tk.Label(self.frame4, image=self.p1, bd=1).place(x=200, y=30, height=100, width=100)
+        pic2 = tk.Label(self.frame4, image=self.p3, bd=1).place(x=200, y=30, height=100, width=100)
 
         l_p2 = Button(self.frame4, text="Tarun kumar\nAI Expert", command=self.change_label2, font=15).place(x=200,
                                                                                                              y=140)
 
         l_p3 = Button(self.frame4, text="Admin\nAI Expert", font=15, command=self.change_label3).place(x=500, y=140)
-        pic2 = tk.Label(self.frame4, image=self.p1, bd=1).place(x=500, y=30, height=100, width=100)
+        pic2 = tk.Label(self.frame4, image=self.p2, bd=1).place(x=500, y=30, height=100, width=100)
 
         self.lbl_name = Label(self.frame4, text="Message to:", font=15, bg="red", fg="white")
         self.lbl_name.place(x=30, y=250)
         self.txt_msg = Text(self.frame4)
         self.txt_msg.place(x=30, y=300, height=100, width=200)
-        self.lbl_rec = Label(self.frame4, text="Recieved messages:", bg="red", fg="white", font=15).place(x=1000, y=200)
+        self.lbl_rec = Label(self.frame4, text="Messages for you:", bg="red", fg="white", font=15).place(x=1000, y=200)
         self.txt_msg_r = Text(self.frame4)
-        self.txt_msg_r.place(x=1000, y=250, height=100, width=200)
+        self.txt_msg_r.place(x=1000, y=250, height=400, width=300)
 
-        btn_back = tk.Button(self.frame4, command=(self.frame4.destroy), text="Back", fg="White", bg="Red",
-                             font=15).place(x=150, y=420)
-        btn_send = tk.Button(self.frame4, text="Send", bg="green", fg="white", command=self.pr1, font=15).place(x=30,
+        btn_back = tk.Button(self.frame4, command=(self.frame4.destroy), text="Back", bg="#DC143C",fg="white",font=15).place(x=150, y=420)
+        btn_send = tk.Button(self.frame4, text="Send", bg="#3CB371", fg="white",font=15, command=self.pr1).place(x=30,
                                                                                                                 y=420)
 
     def pr(self):
@@ -192,6 +193,9 @@ class GetSummary:
     def Summ(self):
         frame2 = Toplevel(self.root, bg="gray")
         frame2.geometry("1000x600+850+50")
+        frame2.state('zoomed')
+        self.img_pic = PhotoImage(file="Images/bg7.png")
+        lnl = Label(frame2, image=self.img_pic).place(x=1, y=1, relheight=1, relwidth=1)
         self.l_heading = tk.Label(frame2, text="Enter the text:", fg="white", font=("Times new roman", 15),
                                   bg="gray")
         self.l_heading.place(x=30, y=30)
@@ -199,12 +203,12 @@ class GetSummary:
         self.txt_sum.place(x=150, y=30, height=500, width=500)
         self.txt_sum_res = tk.Text(frame2)
         self.txt_sum_res.place(x=700, y=30, height=500, width=500)
-        self.l_summary = Label(frame2, text="Your summary will appear here:", fg="white", bg="#e75f5b")
-        self.l_summary.place(x=700, y=10)
+        self.l_summary = Label(frame2, text="Your summary will appear here:", fg="white", bg="#e75f5b",font=14)
+        self.l_summary.place(x=700, y=6)
 
-        self.btn_sum = tk.Button(frame2, text="Get Summary", bg="green", fg="white", command=self.d).place(x=150, y=550)
+        self.btn_sum = tk.Button(frame2, text="Get Summary", bg="#3CB371", fg="white",font=15, command=self.d).place(x=150, y=550)
 
-        btn_back = tk.Button(frame2, command=(frame2.destroy), text="Back", fg="White", bg="Red").place(x=600, y=500)
+        btn_back = tk.Button(frame2, command=(frame2.destroy), text="Back", bg="#DC143C",fg="white",font=15).place(x=600, y=550)
 
 
 class Audible1:
@@ -243,7 +247,7 @@ class AL:
         self.root.config(bg="gray17")
         self.lbl_1 = Label(self.root, image=self.img).place(x=0, y=0, relheight=1, relwidth=1)
         self.root.geometry("800x600+850+50")
-
+        self.root.state('zoomed')
         # ==============FRAMES=========
 
         # setting switch state:
@@ -298,7 +302,7 @@ class AL:
         A = Audible(self.root)
         G = GetSummary(self.root)
         M = Message1(self.root)
-        btn = tk.Button(self.root, text="Click here", command=G.Summ).place(x=1000, y=280)
+        btn = tk.Button(self.root, text="Click here for summary",bg="#DC143C",fg="white",font=15, command=G.Summ).place(x=500, y=300)
 
         T = ImageTextReader(self.root)
 
@@ -307,14 +311,14 @@ class AL:
         self.Icon2 = PhotoImage(file="Images/AudioIcon.png")
         self.Icon3 = PhotoImage(file="Images/icon4.png")
         self.Icon4 = PhotoImage(file="Images/text1.png")
-        lbl = Label(self.root, image=self.Icon1, bd=10).place(x=1000, y=100, height=180, width=180)
-        lbl2 = Label(self.root, image=self.Icon2).place(x=1300, y=100, height=180, width=180)
-        lbl3 = Label(self.root, image=self.Icon3).place(x=1000, y=400, height=180, width=180)
-        lbl4 = Label(self.root, image=self.Icon4).place(x=1300, y=400, height=180, width=180)
+        lbl = Label(self.root, image=self.Icon1, bd=10).place(x=500, y=100, height=180, width=180)
+        lbl2 = Label(self.root, image=self.Icon2).place(x=900, y=100, height=180, width=180)
+        lbl3 = Label(self.root, image=self.Icon3).place(x=500, y=400, height=180, width=180)
+        lbl4 = Label(self.root, image=self.Icon4).place(x=900, y=400, height=180, width=180)
 
-        btn2 = tk.Button(self.root, text="Click here For Audio", command=A.setup).place(x=1300, y=280)
-        btn3 = tk.Button(self.root, text="Click here For Message", command=M.setup).place(x=1000, y=600)
-        btn4 = tk.Button(self.root, text="Click here For Image to Text", command=T.setup).place(x=1300, y=600)
+        btn2 = tk.Button(self.root, text="Click here For Audio", command=A.setup,bg="#DC143C",fg="white",font=15).place(x=900, y=300)
+        btn3 = tk.Button(self.root, text="Click here For Message", command=M.setup,bg="#DC143C",fg="white",font=15).place(x=500, y=600)
+        btn4 = tk.Button(self.root, text="Click here For Image to Text", command=T.setup,bg="#DC143C",fg="white",font=15).place(x=900, y=600)
 
     # setting switch function:
     def switch(self):
