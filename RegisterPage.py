@@ -66,9 +66,8 @@ class Register:
 
         #==========Button==============
         self.btn_image=PhotoImage(file="Images/submit.png")
-        self.Img_back = PhotoImage(file="Images/backbtn.png")
         btn=Button(frame1,image=self.btn_image,bd=0,command=self.feed_Info).place(x=50,y=300,height=50,width=200)
-        btn_back = Button(frame1, command=(root.destroy), text="Back", bg="White", image=self.Img_back,font=("Times new roman",20),bd=0).place(x=50, y=400,height=50,width=100)
+        btn_back = Button(frame1, command=(root.destroy), text="Back", fg="White", bg="Red").place(x=50, y=400)
 
     def feed_Info(self):
         mycursor = registerdb.cursor()
