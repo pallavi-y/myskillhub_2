@@ -192,6 +192,8 @@ class GetSummary:
     def Summ(self):
         frame2 = Toplevel(self.root, bg="gray")
         frame2.geometry("1000x600+850+50")
+        self.Bg2 = PhotoImage(file="Images/bg7.png")
+        l_1 = Label(frame2, image=self.Bg2).place(x=1, y=1, relheight=1, relwidth=1)
         self.l_heading = tk.Label(frame2, text="Enter the text:", fg="white", font=("Times new roman", 15),
                                   bg="gray")
         self.l_heading.place(x=30, y=30)
@@ -315,6 +317,7 @@ class AL:
         btn2 = tk.Button(self.root, text="Click here For Audio", command=A.setup).place(x=1300, y=280)
         btn3 = tk.Button(self.root, text="Click here For Message", command=M.setup).place(x=1000, y=600)
         btn4 = tk.Button(self.root, text="Click here For Image to Text", command=T.setup).place(x=1300, y=600)
+        btn5 = tk.Button(self.root, text="Click here For Image to Logout", command=self.root.destroy).place(x=500, y=600)
 
     # setting switch function:
     def switch(self):
