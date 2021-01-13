@@ -300,7 +300,7 @@ class AL:
         A = Audible(self.root)
         G = GetSummary(self.root)
         M = Message1(self.root)
-        btn = tk.Button(self.root, text="Click here", command=G.Summ).place(x=1000, y=280)
+        btn = tk.Button(self.root, text="Click here", command=G.Summ).place(x=500, y=280)
 
         T = ImageTextReader(self.root)
 
@@ -309,15 +309,15 @@ class AL:
         self.Icon2 = PhotoImage(file="Images/AudioIcon.png")
         self.Icon3 = PhotoImage(file="Images/icon4.png")
         self.Icon4 = PhotoImage(file="Images/text1.png")
-        lbl = Label(self.root, image=self.Icon1, bd=10).place(x=1000, y=100, height=180, width=180)
-        lbl2 = Label(self.root, image=self.Icon2).place(x=1300, y=100, height=180, width=180)
-        lbl3 = Label(self.root, image=self.Icon3).place(x=1000, y=400, height=180, width=180)
-        lbl4 = Label(self.root, image=self.Icon4).place(x=1300, y=400, height=180, width=180)
+        lbl = Label(self.root, image=self.Icon1, bd=10).place(x=500, y=100, height=180, width=180)
+        lbl2 = Label(self.root, image=self.Icon2).place(x=800, y=100, height=180, width=180)
+        lbl3 = Label(self.root, image=self.Icon3).place(x=500, y=400, height=180, width=180)
+        lbl4 = Label(self.root, image=self.Icon4).place(x=800, y=400, height=180, width=180)
 
-        btn2 = tk.Button(self.root, text="Click here For Audio", command=A.setup).place(x=1300, y=280)
-        btn3 = tk.Button(self.root, text="Click here For Message", command=M.setup).place(x=1000, y=600)
-        btn4 = tk.Button(self.root, text="Click here For Image to Text", command=T.setup).place(x=1300, y=600)
-        btn5 = tk.Button(self.root, text="Click here For Image to Logout", command=self.root.destroy).place(x=500, y=600)
+        btn2 = tk.Button(self.root, text="Click here For Audio", command=A.setup).place(x=800, y=280)
+        btn3 = tk.Button(self.root, text="Click here For Message", command=M.setup).place(x=500, y=600)
+        btn4 = tk.Button(self.root, text="Click here For Image to Text", command=T.setup).place(x=800, y=600)
+        btn5 = tk.Button(self.root, text="Click to Logout",bg="red", command=self.root.destroy).place(x=1300, y=280)
 
     # setting switch function:
     def switch(self):
