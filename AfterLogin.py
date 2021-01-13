@@ -47,7 +47,7 @@ class Audible:
     def setup(self):
         self.frame6 = tk.Toplevel(self.root)
         self.frame6.geometry("1000x600+850+50")
-
+        self.frame6.state('zoomed')
         self.img_pic = PhotoImage(file="Images/bg7.png")
         lnl = Label(self.frame6, image=self.img_pic).place(x=1, y=1, relheight=1, relwidth=1)
         style = ttk.Style(self.frame6)
@@ -75,7 +75,7 @@ class ImageTextReader:
     def setup(self):
         self.frame6 = tk.Toplevel(self.root)
         self.frame6.geometry("1000x600+850+50")
-
+        self.frame6.state('zoomed')
         self.img_pic = PhotoImage(file="Images/bg7.png")
         lnl = Label(self.frame6, image=self.img_pic).place(x=1, y=1, relheight=1, relwidth=1)
         style = ttk.Style(self.frame6)
@@ -192,6 +192,7 @@ class GetSummary:
     def Summ(self):
         frame2 = Toplevel(self.root, bg="gray")
         frame2.geometry("1000x600+850+50")
+        frame2.state('zoomed')
         self.Bg2 = PhotoImage(file="Images/bg7.png")
         l_1 = Label(frame2, image=self.Bg2).place(x=1, y=1, relheight=1, relwidth=1)
         self.l_heading = tk.Label(frame2, text="Enter the text:", fg="white", font=("Times new roman", 15),
@@ -213,12 +214,15 @@ class Audible1:
     def __int__(self, root):
         self.root = root
 
+
     def listen(self):
         textTospeech.Say(self.txt_audio.get(1.0, END))
 
     def begin(self):
         frame3 = tk.Toplevel(self.root, bg="#ba8181")
         frame3.geometry("1000x600+850+50")
+        frame3.state('zoomed')
+
         self.txt_audio = tk.Text(frame3)
         self.txt_audio.place(x=50, y=50, height=500, width=500)
 
@@ -245,6 +249,7 @@ class AL:
         self.root.config(bg="gray17")
         self.lbl_1 = Label(self.root, image=self.img).place(x=0, y=0, relheight=1, relwidth=1)
         self.root.geometry("800x600+850+50")
+        self.root.state('zoomed')
 
         # ==============FRAMES=========
 
