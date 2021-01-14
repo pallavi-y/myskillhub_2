@@ -62,9 +62,9 @@ class Audible:
                               fg="white", font=("Times new Roman", 15, "italic")).place(x=650, y=100)
 
         self.lbl_info = Label(self.frame6, text="Enter your text here!", bg="#52af52", fg="white",
-                              font=("Times new Roman", 15)).place(x=50, y=30)
-        btn_listen = Button(self.frame6, text="Convert", bg="green", fg="white",command=self.listen).place(x=50, y=570)
-        btn_back = tk.Button(self.frame6, command=(self.frame6.destroy), text="Back", fg="White", bg="Red").place(x=600, y=570)
+                              font=("Times new Roman", 15)).place(x=50, y=25)
+        btn_listen = Button(self.frame6, text="Convert", bg="green", fg="white",font="Bahnschrift 15",command=self.listen).place(x=50, y=570)
+        btn_back = tk.Button(self.frame6, command=(self.frame6.destroy), text="Back",font="Bahnschrift 15", fg="White", bg="Red").place(x=600, y=570)
 
 
 
@@ -205,9 +205,9 @@ class GetSummary:
         self.l_summary = Label(frame2, text="Your summary will appear here:", fg="white", bg="#e75f5b")
         self.l_summary.place(x=700, y=10)
 
-        self.btn_sum = tk.Button(frame2, text="Get Summary", bg="green", fg="white", command=self.d).place(x=150, y=550)
+        self.btn_sum = tk.Button(frame2, text="Get Summary",font="Bahnschrift 15", bg="green", fg="white", command=self.d).place(x=150, y=550)
 
-        btn_back = tk.Button(frame2, command=(frame2.destroy), text="Back", fg="White", bg="Red").place(x=600, y=500)
+        btn_back = tk.Button(frame2, command=(frame2.destroy),font="Bahnschrift 15", text="Back", fg="White", bg="Red").place(x=600, y=550)
 
 
 class Audible1:
@@ -305,7 +305,7 @@ class AL:
         A = Audible(self.root)
         G = GetSummary(self.root)
         M = Message1(self.root)
-        btn = tk.Button(self.root, text="Click here", command=G.Summ).place(x=500, y=300)
+        btn = tk.Button(self.root, text="Click here",font="Bahnschrift 15", command=G.Summ).place(x=500, y=300)
 
         T = ImageTextReader(self.root)
 
@@ -319,10 +319,10 @@ class AL:
         lbl3 = Label(self.root, image=self.Icon3).place(x=500, y=420, height=180, width=180)
         lbl4 = Label(self.root, image=self.Icon4).place(x=800, y=420, height=180, width=180)
 
-        btn2 = tk.Button(self.root, text="Click here For Audio", command=A.setup).place(x=800, y=300)
-        btn3 = tk.Button(self.root, text="Click here For Message", command=M.setup).place(x=500, y=620)
-        btn4 = tk.Button(self.root, text="Click here For Image to Text", command=T.setup).place(x=800, y=620)
-        btn5 = tk.Button(self.root, text="Click to Logout",bg="red", command=self.root.destroy).place(x=1300, y=280)
+        btn2 = tk.Button(self.root, text="Click here For Audio",font="Bahnschrift 15", command=A.setup).place(x=800, y=300)
+        btn3 = tk.Button(self.root, text="Click here For Message",font="Bahnschrift 15", command=M.setup).place(x=500, y=620)
+        btn4 = tk.Button(self.root, text="Click here For Image to Text",font="Bahnschrift 15", command=T.setup).place(x=800, y=620)
+        btn5 = tk.Button(self.root, text="Click to Logout",bg="red",font="Bahnschrift 15", command=self.root.destroy).place(x=1300, y=280)
 
     # setting switch function:
     def switch(self):
