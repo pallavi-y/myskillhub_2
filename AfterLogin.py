@@ -87,7 +87,7 @@ class ImageTextReader:
         self.img_path.place(x=10, y=40, width=200, height=50)
 
         self.txt_result = Text(self.frame6)
-        self.txt_result.place(x=500, y=40, height=500, width=300)
+        self.txt_result.place(x=500, y=40, height=500, width=700)
 
         btn_convert = Button(self.frame6, text="Convert", bg="Green", fg="white", font=15, command=self.convert).place(
             x=10, y=200)

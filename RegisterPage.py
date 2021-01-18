@@ -78,9 +78,10 @@ class Register:
         else:
             mycursor.execute("CREATE TABLE IF NOT EXISTS Users (Fname varchar(30),Lname varchar(30),Password varchar(30))")
             mycursor.execute("INSERT INTO Users ( Fname, Lname,Password) VALUES(%s,%s,%s)", (self.txt_fname.get(), self.txt_lname.get(),self.txt_pass.get()))
+            messagebox.showinfo("Success", "Successfully Registered", parent=self.root)
         registerdb.commit()
         mycursor.close()
-        messagebox.showinfo("Success","Successfully Registered", parent=self.root)
+
         print("closed")
 # root=Tk()
 # obj=Register(root)
