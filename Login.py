@@ -68,6 +68,8 @@ class Login:
                 #messagebox.showinfo("Welcome", "Successfully logged in", parent=self.root)
                 self.command()
                 print("test")
+                self.txt_passwd.delete(0, 'end')
+                self.txt_user.delete(0, 'end')
             else:
                 messagebox.showerror("Error", "Incorrect username or password", parent=self.root)
 

@@ -166,15 +166,20 @@ class Message1:
     def pr1(self):
 
         mycursor = db.cursor()
-        if self.txt_msg.get(1.0, END) == 0:
-            messagebox.showerror("Error", "Message box is empty", parent=self.root)
+        if len(self.txt_msg.get("1.0", "end-1c")) == 0:
+            messagebox.showerror("Error", "Message box is empty", parent=self.frame4)
         else:
             sendr = "Admin"
             mycursor.execute("Insert into message(sender,reciever,msg) values(%s,%s,%s)",
                              (sendr, self.name, self.txt_msg.get(1.0, END)))
+            messagebox.showerror("Error", "Message sent", parent=self.frame4)
 
             if self.name == "Admin":
-                # mycursor.execute("Select msg from message where reciever = 'Admin';")
+                # result= mycursor.execute("Select msg from message where reciever = 'Admin';")
+                # str=''
+                # for i in result:
+                #     str=str+i
+                # self.txt_msg_r.insert(1.0, str)
                 self.txt_msg_r.insert(1.0, self.txt_msg.get(1.0, END))
             db.commit()
             mycursor.close()
