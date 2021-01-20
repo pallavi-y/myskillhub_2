@@ -95,6 +95,7 @@ class ImageTextReader:
                              font=15).place(x=100, y=200)
 
     def convert(self):
+        self.txt_result.delete(1.0,'end')
         img = cv2.imread(self.img_path.get())
         pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
         custom_config = r'--oem 3 --psm 6'
@@ -117,17 +118,19 @@ class Message1:
         l_1 = Label(self.frame4, image=self.Bg1).place(x=1, y=1, relheight=1, relwidth=1)
 
         self.p1 = PhotoImage(file="Images/Avtar1.png")
+        self.p2=PhotoImage(file="Images/g.png")
+        self.p3=PhotoImage(file="Images/boy.png")
         frame5 = tk.Label(self.frame4, image=self.p1, bd=1).place(x=30, y=30, height=100, width=100)
 
-        l_p1 = Button(self.frame4, text="Rajesh kumar\nWeb Devloper", command=self.change_label1, font=15).place(x=30,
+        l_p1 = Button(self.frame4, text="Rajesh kumar\nWeb Developer", command=self.change_label1, font=15).place(x=30,
                                                                                                                  y=140)
-        pic2 = tk.Label(self.frame4, image=self.p1, bd=1).place(x=200, y=30, height=100, width=100)
+        pic2 = tk.Label(self.frame4, image=self.p3, bd=1).place(x=200, y=30, height=100, width=100)
 
         l_p2 = Button(self.frame4, text="Tarun kumar\nAI Expert", command=self.change_label2, font=15).place(x=200,
                                                                                                              y=140)
 
         l_p3 = Button(self.frame4, text="Admin\nAI Expert", font=15, command=self.change_label3).place(x=500, y=140)
-        pic2 = tk.Label(self.frame4, image=self.p1, bd=1).place(x=500, y=30, height=100, width=100)
+        pic2 = tk.Label(self.frame4, image=self.p2, bd=1).place(x=500, y=30, height=100, width=100)
 
         self.lbl_name = Label(self.frame4, text="Message to:", font=15, bg="red", fg="white")
         self.lbl_name.place(x=30, y=250)
@@ -152,7 +155,7 @@ class Message1:
             self.txt_msg_r.insert(1.0, i)
 
     def change_label1(self):
-        self.name = "Ravi"
+        self.name = "Rajesh"
         self.lbl_name['text'] = 'Message to: ' + self.name
 
     def change_label2(self):
@@ -191,6 +194,7 @@ class GetSummary:
 
     def d(self):
         # print(self.txt_sum.get())
+        self.txt_sum_res.delete(1.0,'end')
         text1 = summarizer.summarize1(self.txt_sum.get(1.0, END))
         self.txt_sum_res.insert(1.0, text1)
 
@@ -310,7 +314,7 @@ class AL:
         A = Audible(self.root)
         G = GetSummary(self.root)
         M = Message1(self.root)
-        btn = tk.Button(self.root, text="Click here",font="Bahnschrift 15", command=G.Summ).place(x=500, y=300)
+        btn = tk.Button(self.root, text="Click here for summary",font="Bahnschrift 15", command=G.Summ).place(x=500, y=300)
 
         T = ImageTextReader(self.root)
 

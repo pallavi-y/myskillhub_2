@@ -5,7 +5,7 @@ from tkinter import messagebox
 import AfterLogin
 
 import mysql.connector
-# from AfterLogin import Profile
+
 import RegisterPage
 
 db=mysql.connector.connect(host="localhost", user="rootuser", passwd="root", database="myskillhub")
@@ -26,7 +26,7 @@ class Login:
     def __init__(self, root):
 
         self.root=root
-        self.root.title("Login System")
+        self.root.title("My-Skill Hub")
         self.root.geometry("1199x600+100+50")
         self.root.resizable(False,False)
         #=====Background Image=====
